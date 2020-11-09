@@ -148,10 +148,33 @@ proxies:
   # skip-cert-verify: true
 
 # Netease Music
-- name: "UnblockMusic"
+- name: "🎵 解锁节点1"
   type: http
   server: unblockmusic.yjs2635.xyz
   port: 60999
+
+- name: "🎵 解锁节点2"
+  type: ss
+  server: music.desperadoj.com
+  port: 30001
+  cipher: aes-128-gcm
+  password: desperadoj.com_free_proxy_emx2
+
+- name: "🎵 解锁节点3"
+  server: music.lolico.me
+  port: 39000
+  type: http
+  username: ""
+  password: ""
+  tls: false
+
+- name: "🎵 解锁节点4"
+  server: taron.top
+  port: 100
+  type: http
+  username: ""
+  password: ""
+  tls: false
 
 # 代理组策略
 # 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
@@ -204,7 +227,10 @@ proxy-groups:
 - name: "Netease Music"
   type: select
   proxies: 
-    - "UnblockMusic"
+    - "🎵 解锁节点1"
+    - "🎵 解锁节点2"
+    - "🎵 解锁节点3"
+    - "🎵 解锁节点4"
     - DIRECT
 
 # 白名单模式 PROXY，黑名单模式 DIRECT
@@ -1388,16 +1414,66 @@ rules:
 - DOMAIN-SUFFIX,windows.com,DIRECT
 - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
 - DOMAIN,officecdn-microsoft-com.akamaized.net,DIRECT
-# > NetEase
-# USER-AGENT,NeteaseMusic*,DIRECT
-# USER-AGENT,%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90*,DIRECT
-- DOMAIN-SUFFIX,163.com,DIRECT
-- DOMAIN-SUFFIX,126.net,DIRECT
-- DOMAIN-SUFFIX,127.net,DIRECT
-- DOMAIN-SUFFIX,163yun.com,DIRECT
-- DOMAIN-SUFFIX,lofter.com,DIRECT
-- DOMAIN-SUFFIX,netease.com,DIRECT
-- DOMAIN-SUFFIX,ydstatic.com,DIRECT
+
+# Unblock Netease Music
+#- DOMAIN,api.iplay.163.com,Netease Music
+- DOMAIN,apm3.music.163.com,Netease Music
+- DOMAIN,apm.music.163.com,Netease Music
+- DOMAIN,interface3.music.163.com,Netease Music
+- DOMAIN,interface.music.163.com,Netease Music
+- DOMAIN,music.163.com,Netease Music
+
+- DOMAIN,httpdns.n.netease.com,Netease Music
+#- DOMAIN-SUFFIX,163yun.com,Netease Music
+##- DOMAIN-SUFFIX,music.126.net,Netease Music
+##- DOMAIN-SUFFIX,mam.netease.com,Netease Music
+#- DOMAIN-SUFFIX,hz.netease.com,Netease Music
+##- DOMAIN,nstool.netease.com,Netease Music
+##- DOMAIN-KEYWORD,nstool,Netease Music
+
+# CIDR规则
+- IP-CIDR,39.105.63.80/32,Netease Music
+- IP-CIDR,45.254.48.1/32,Netease Music
+- IP-CIDR,47.100.127.239/32,Netease Music
+- IP-CIDR,59.111.160.195/32,Netease Music
+- IP-CIDR,59.111.160.197/32,Netease Music
+- IP-CIDR,59.111.181.35/32,Netease Music
+- IP-CIDR,59.111.181.38/32,Netease Music
+- IP-CIDR,59.111.181.60/32,Netease Music
+- IP-CIDR,101.71.154.241/32,Netease Music
+- IP-CIDR,103.126.92.132/32,Netease Music
+- IP-CIDR,103.126.92.133/32,Netease Music
+- IP-CIDR,112.13.119.17/32,Netease Music
+- IP-CIDR,112.13.122.1/32,Netease Music
+- IP-CIDR,115.236.118.33/32,Netease Music
+- IP-CIDR,115.236.121.1/32,Netease Music
+- IP-CIDR,118.24.63.156/32,Netease Music
+- IP-CIDR,193.112.159.225/32,Netease Music
+- IP-CIDR,223.252.199.66/32,Netease Music
+- IP-CIDR,223.252.199.67/32,Netease Music
+- IP-CIDR6,2407:ae80:200:1001::20/128,Netease Music
+- IP-CIDR6,2407:ae80:200:1001::21/128,Netease Music
+- IP-CIDR6,2409:8c28:c05:202::3/128,Netease Music
+- IP-CIDR6,2409:8c28:c05:202::2/128,Netease Music
+- IP-CIDR6,2409:8c28:c05:3:0:4:0:2/128,Netease Music
+
+
+- IP-CIDR,59.111.21.14/32,Netease Music
+- IP-CIDR,59.111.179.214/32,Netease Music
+- IP-CIDR,59.111.179.213/32,Netease Music
+- IP-CIDR,59.111.239.61/32,Netease Music
+- IP-CIDR,112.13.122.49/32,Netease Music
+##- IP-CIDR,59.111.181.155/32,Netease Music
+- IP-CIDR,59.111.239.62/32,Netease Music
+- IP-CIDR,115.236.121.3/32,Netease Music
+- IP-CIDR,112.13.119.18/32,Netease Music
+
+# Advertising
+- DOMAIN,admusicpic.music.126.net,REJECT
+- DOMAIN,iadmat.nosdn.127.net,REJECT
+- DOMAIN,iadmusicmat.music.126.net,REJECT
+- DOMAIN,iadmusicmatvideo.music.126.net,REJECT
+
 # > Sina
 - DOMAIN-SUFFIX,sina.com,DIRECT
 - DOMAIN-SUFFIX,weibo.com,DIRECT
@@ -1680,65 +1756,6 @@ rules:
 - DOMAIN-SUFFIX,mzstatic.com,Apple
 - DOMAIN,www-cdn.icloud.com.akadns.net,Apple
 - IP-CIDR,17.0.0.0/8,Apple,no-resolve
-
-# Unblock Netease Music
-#- DOMAIN,api.iplay.163.com,Netease Music
-- DOMAIN,apm3.music.163.com,Netease Music
-- DOMAIN,apm.music.163.com,Netease Music
-- DOMAIN,interface3.music.163.com,Netease Music
-- DOMAIN,interface.music.163.com,Netease Music
-- DOMAIN,music.163.com,Netease Music
-
-- DOMAIN,httpdns.n.netease.com,Netease Music
-#- DOMAIN-SUFFIX,163yun.com,Netease Music
-##- DOMAIN-SUFFIX,music.126.net,Netease Music
-##- DOMAIN-SUFFIX,mam.netease.com,Netease Music
-#- DOMAIN-SUFFIX,hz.netease.com,Netease Music
-##- DOMAIN,nstool.netease.com,Netease Music
-##- DOMAIN-KEYWORD,nstool,Netease Music
-
-# CIDR规则
-- IP-CIDR,39.105.63.80/32,Netease Music
-- IP-CIDR,45.254.48.1/32,Netease Music
-- IP-CIDR,47.100.127.239/32,Netease Music
-- IP-CIDR,59.111.160.195/32,Netease Music
-- IP-CIDR,59.111.160.197/32,Netease Music
-- IP-CIDR,59.111.181.35/32,Netease Music
-- IP-CIDR,59.111.181.38/32,Netease Music
-- IP-CIDR,59.111.181.60/32,Netease Music
-- IP-CIDR,101.71.154.241/32,Netease Music
-- IP-CIDR,103.126.92.132/32,Netease Music
-- IP-CIDR,103.126.92.133/32,Netease Music
-- IP-CIDR,112.13.119.17/32,Netease Music
-- IP-CIDR,112.13.122.1/32,Netease Music
-- IP-CIDR,115.236.118.33/32,Netease Music
-- IP-CIDR,115.236.121.1/32,Netease Music
-- IP-CIDR,118.24.63.156/32,Netease Music
-- IP-CIDR,193.112.159.225/32,Netease Music
-- IP-CIDR,223.252.199.66/32,Netease Music
-- IP-CIDR,223.252.199.67/32,Netease Music
-- IP-CIDR6,2407:ae80:200:1001::20/128,Netease Music
-- IP-CIDR6,2407:ae80:200:1001::21/128,Netease Music
-- IP-CIDR6,2409:8c28:c05:202::3/128,Netease Music
-- IP-CIDR6,2409:8c28:c05:202::2/128,Netease Music
-- IP-CIDR6,2409:8c28:c05:3:0:4:0:2/128,Netease Music
-
-
-- IP-CIDR,59.111.21.14/32,Netease Music
-- IP-CIDR,59.111.179.214/32,Netease Music
-- IP-CIDR,59.111.179.213/32,Netease Music
-- IP-CIDR,59.111.239.61/32,Netease Music
-- IP-CIDR,112.13.122.49/32,Netease Music
-##- IP-CIDR,59.111.181.155/32,Netease Music
-- IP-CIDR,59.111.239.62/32,Netease Music
-- IP-CIDR,115.236.121.3/32,Netease Music
-- IP-CIDR,112.13.119.18/32,Netease Music
-
-# Advertising
-- DOMAIN,admusicpic.music.126.net,REJECT
-- DOMAIN,iadmat.nosdn.127.net,REJECT
-- DOMAIN,iadmusicmat.music.126.net,REJECT
-- DOMAIN,iadmusicmatvideo.music.126.net,REJECT
 
 # Local Area Network
 - IP-CIDR,192.168.0.0/16,DIRECT
