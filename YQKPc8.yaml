@@ -150,31 +150,13 @@ proxies:
 # Netease Music
 - name: "🎵 解锁节点1"
   type: http
-  server: unblockmusic.yjs2635.xyz
-  port: 60999
+  server: 47.106.38.136
+  port: 8090
 
 - name: "🎵 解锁节点2"
-  type: ss
-  server: music.desperadoj.com
-  port: 30001
-  cipher: aes-128-gcm
-  password: desperadoj.com_free_proxy_emx2
-
-- name: "🎵 解锁节点3"
-  server: music.lolico.me
-  port: 39000
   type: http
-  username: ""
-  password: ""
-  tls: false
-
-- name: "🎵 解锁节点4"
-  server: taron.top
-  port: 100
-  type: http
-  username: ""
-  password: ""
-  tls: false
+  server: unblockmusic.yjs2635.xyz
+  port: 60999
 
 # 代理组策略
 # 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/blob/master/README.md
